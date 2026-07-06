@@ -18,8 +18,9 @@
     ../../modules/home/apps/rclone/rclone-sync.nix
     ../../modules/home/apps/rclone/rclone-mount.nix
 
-    ../../modules/home/de/noctalia.nix
-    ../../modules/home/de/niri.nix
+    #../../modules/home/de/noctalia.nix
+    #../../modules/home/de/niri.nix
+    #../../modules/home/de/kineticwe.nix
   ];
 
   # Identità + versione HM

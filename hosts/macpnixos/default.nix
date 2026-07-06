@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
   ...
 }:
 
@@ -168,7 +166,18 @@
   enableDocker = true;
 
   # Stampa/Bluetooth (abilita se ti servono su questo host)
-  services.printing.enable = true; # CUPS
+  services.printing = {
+    enable = true;
+    # Se preferisci usare i driver ufficiali Epson invece del driverless:
+    drivers = [ pkgs.epson-escpr2 ];
+  };
+
+  services.avahi = {
+    # Avahi (mDNS) per la scoperta delle stampanti di rete
+    enable = true;
+    nssmdns4 = true; # Permette di risolvere i nomi .local
+    openFirewall = true;
+  };
 
   # ----- programmi e pacchetti di sistema host-level  -----
   programs = {
