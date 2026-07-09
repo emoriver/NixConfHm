@@ -1,23 +1,26 @@
 { pkgs, ... }:
 
 {
-  services.swayidle = {
-    enable = true;
-    timeouts = [
-      {
-        timeout = 300;
-        command = "${pkgs.niri}/bin/niri msg action power-off-monitors";
-        resumeCommand = "${pkgs.niri}/bin/niri msg action power-on-monitors";
-      }
-      {
-        timeout = 600;
-        command = "${pkgs.systemd}/bin/systemctl suspend";
-      }
-    ];
-    events = {
-      lock = "noctalia msg session lock";
+
+  /*
+    services.swayidle = {
+      enable = true;
+      timeouts = [
+        {
+          timeout = 300;
+          command = "${pkgs.niri}/bin/niri msg action power-off-monitors";
+          resumeCommand = "${pkgs.niri}/bin/niri msg action power-on-monitors";
+        }
+        {
+          timeout = 600;
+          command = "${pkgs.systemd}/bin/systemctl suspend";
+        }
+      ];
+      events = {
+        lock = "noctalia msg session lock";
+      };
     };
-  };
+  */
 
   programs.niri = {
     package = pkgs.niri;
@@ -35,7 +38,7 @@
               }
           }
           touchpad {
-              natural-scroll 
+              natural-scroll
               tap
           }
       }
@@ -90,7 +93,7 @@
           "Mod+Right" { focus-column-right; }
           "Mod+Up"    { focus-window-up; }
           "Mod+Down"  { focus-window-down; }
-          
+
           "Mod+Shift+Up"    { focus-workspace-up; }
           "Mod+Shift+Down"  { focus-workspace-down; }
           "Mod+Shift+Left"  { move-column-left; }
@@ -99,7 +102,7 @@
           "Mod+1" { focus-workspace 1; }
           "Mod+2" { focus-workspace 2; }
           "Mod+3" { focus-workspace 3; }
-          
+
           "Mod+F"       { maximize-column; }
           "Mod+Shift+F" { fullscreen-window; }
           "Mod+Comma"   { consume-window-into-column; }
