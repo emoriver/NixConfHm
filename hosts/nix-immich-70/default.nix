@@ -1,6 +1,6 @@
-{ config, modulesPath, pkgs, lib, ... }:
+{ modulesPath, pkgs, ... }:
 {
-  imports = [ 
+  imports = [
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
 
     # pacchetti di sistema
@@ -16,18 +16,22 @@
     #../../modules/nixos/services/vpn.nix
     ../../modules/nixos/services/samba.nix
   ];
-  
-  nix.settings = { sandbox = false; };  
+
+  nix.settings = {
+    sandbox = false;
+  };
   proxmoxLXC = {
     manageNetwork = false;
     privileged = true;
   };
 
-
   # ----- impostazioni di nix -----
   nixpkgs.config.allowUnfree = true;
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     auto-optimise-store = true;
     warn-dirty = false;
     substituters = [
@@ -42,7 +46,6 @@
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
-
 
   # ----- servizi di base -----
   services.openssh = {
@@ -62,7 +65,6 @@
 
   enableDocker = true;
 
-
   # ----- programmi e pacchetti di sistema host-level  -----
   programs = {
     zsh.enable = true;
@@ -72,26 +74,28 @@
 
   environment.systemPackages = with pkgs; [
     #vim
-    git 
-    curl 
-    wget 
-    htop 
-    #btop 
-    ripgrep 
-    fd 
-    unzip 
-    zip 
-    gnupg 
+    git
+    curl
+    wget
+    htop
+    #btop
+    ripgrep
+    fd
+    unzip
+    zip
+    gnupg
     tmux
     yazi
   ];
 
   services.fstrim.enable = false; # Let Proxmox host handle fstrim
 
-  systemd.mounts = [{
-    where = "/sys/kernel/debug";
-    enable = false;
-  }];
+  systemd.mounts = [
+    {
+      where = "/sys/kernel/debug";
+      enable = false;
+    }
+  ];
 
   system.stateVersion = "25.11";
 }
