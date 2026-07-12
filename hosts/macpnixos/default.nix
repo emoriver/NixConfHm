@@ -98,6 +98,12 @@
     };
   };
 
+  systemd.services.iwd = {
+    # Abilita iwd per la gestione della rete WiFi e lo fa partire dopo che la scheda WiFi è stata inizializzata
+    after = [ "sys-subsystem-net-devices-wlan0.device" ];
+    wants = [ "sys-subsystem-net-devices-wlan0.device" ];
+  };
+
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
