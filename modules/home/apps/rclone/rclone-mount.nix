@@ -46,6 +46,9 @@ in
         '';
         ExecStop = "${pkgs.util-linux}/bin/fusermount -u ${cfg.mountPoint}";
         Restart = "always";
+        RestartSec = 30; # aspetta 30 secondi prima di riprovare in caso di rete non pronta
+        StartLimitIntervalSec = 300;
+        StartLimitBurst = 10;
         Type = "notify";
         TimeoutSec = 60;
       };
