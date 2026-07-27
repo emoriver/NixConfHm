@@ -82,6 +82,7 @@
       tumbler
       libgsf
       ffmpegthumbnailer
+      nil
     ])
     ++ (with pkgsUnstable; [
       #kiro  # installato tramite modules/home/apps/kiro.nix
