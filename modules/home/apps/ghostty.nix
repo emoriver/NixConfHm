@@ -16,10 +16,10 @@
       background-blur = true;
       #background-blur-radius = 20;
 
-      window-padding-x = 10;
-      window-padding-y = 10;
-      window-padding-balance = true;
-      window-decoration = false;
+      #window-padding-x = 10;
+      #window-padding-y = 10;
+      #window-padding-balance = true;
+      #window-decoration = false;
 
       bell-features = "audio";
 

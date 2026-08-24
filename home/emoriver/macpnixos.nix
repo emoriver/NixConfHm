@@ -61,9 +61,7 @@
       yq-go
       spotify
       keepassxc
-      #mailspring
       thunderbird
-      rawtherapee
       exiftool
       obsidian
       gimp
@@ -85,7 +83,7 @@
       nil
     ])
     ++ (with pkgsUnstable; [
-      #kiro  # installato tramite modules/home/apps/kiro.nix
+      rawtherapee
       rapidraw
     ]);
 

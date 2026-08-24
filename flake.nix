@@ -24,10 +24,10 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    kineticwe = {
-      url = "gitlab:theblackdon/kineticwe";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #kineticwe = {
+    #  url = "gitlab:theblackdon/kineticwe";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
 
   outputs =
