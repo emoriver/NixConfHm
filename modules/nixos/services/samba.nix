@@ -1,4 +1,4 @@
-{ config, lib, ... }: # <-- Aggiunto lib qui
+{ config, lib, ... }:
 
 with lib;
 
@@ -11,16 +11,19 @@ in
 
     workgroup = mkOption {
       type = types.str;
+      default = "WORKGROUP";
       description = "Workgroup.";
     };
 
     srvString = mkOption {
       type = types.str;
+      default = "NixOS Samba Server";
       description = "Nome del server.";
     };
 
     netbiosName = mkOption {
       type = types.str;
+      default = "nixos-samba";
       description = "Nome Netbios.";
     };
 
@@ -42,14 +45,14 @@ in
       enable = true;
       openFirewall = true;
 
-      # Struttura settings corretta per Yarara / NixOS stabile
       settings = {
         global = {
           "workgroup" = cfg.workgroup;
           "server string" = cfg.srvString;
           "netbios name" = cfg.netbiosName;
           "security" = "user";
-          "hosts allow" = "192.168. 127.0.0.1 localhost";
+          # Subnet corretta per la tua rete 192.168.88.x e fallback su 192.168.0.0/16
+          "hosts allow" = "192.168.88. 192.168.0.0/16 127.0.0.1 localhost";
           "hosts deny" = "0.0.0.0/0";
           "guest account" = "nobody";
           "map to guest" = "bad user";
@@ -89,6 +92,14 @@ in
     networking.firewall = {
       enable = true;
       allowPing = true;
+      allowedTCPPorts = [
+        445
+        139
+      ];
+      allowedUDPPorts = [
+        137
+        138
+      ];
     };
   };
 }

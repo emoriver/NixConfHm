@@ -3,31 +3,35 @@
   imports = [
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
 
-    # pacchetti di sistema
-    #../../modules/nixos/system/audio.nix
-    #../../modules/nixos/de/plasma6.nix
-
     # utenti - !! -
     ../../modules/nixos/users/emoriver.nix
 
     # servizi
-    #../../modules/nixos/services/postgresql.nix
     ../../modules/nixos/services/docker.nix
-    #../../modules/nixos/services/vpn.nix
     ../../modules/nixos/services/samba.nix
   ];
 
-  nix.settings = {
-    sandbox = false;
+  # ----- Abilitazione del tuo Modulo Samba -----
+  services.mySambaSuite = {
+    enable = true;
+    workgroup = "WORKGROUP";
+    srvString = "NixOS Immich LXC";
+    netbiosName = "nix-immich-70";
+
+    publicPath = "/srv/shares/public";
+    privatePath = "/srv/shares/private";
   };
+
+  # ----- Impostazioni LXC Proxmox -----
   proxmoxLXC = {
     manageNetwork = false;
     privileged = true;
   };
 
-  # ----- impostazioni di nix -----
+  # ----- Impostazioni di Nix -----
   nixpkgs.config.allowUnfree = true;
   nix.settings = {
+    sandbox = false;
     experimental-features = [
       "nix-command"
       "flakes"
@@ -36,9 +40,7 @@
     warn-dirty = false;
     substituters = [
       "https://cache.nixos.org/"
-      # Aggiungi altri se li usi (es. Cachix)
     ];
-    # trusted-public-keys = [ ... ];
   };
 
   nix.gc = {
@@ -47,7 +49,7 @@
     options = "--delete-older-than 7d";
   };
 
-  # ----- servizi di base -----
+  # ----- Servizi di base -----
   services.openssh = {
     enable = true;
     openFirewall = true;
@@ -63,22 +65,20 @@
 
   security.pam.services.sshd.allowNullPassword = false;
 
+  # Se nel tuo docker.nix hai definito l'opzione custom enableDocker:
   enableDocker = true;
 
-  # ----- programmi e pacchetti di sistema host-level  -----
+  # ----- Programmi e pacchetti di sistema -----
   programs = {
     zsh.enable = true;
-    #git.enable = true;
     ssh.startAgent = true;
   };
 
   environment.systemPackages = with pkgs; [
-    #vim
     git
     curl
     wget
     htop
-    #btop
     ripgrep
     fd
     unzip
@@ -88,7 +88,7 @@
     yazi
   ];
 
-  services.fstrim.enable = false; # Let Proxmox host handle fstrim
+  services.fstrim.enable = false; # Gestito dall'host Proxmox
 
   systemd.mounts = [
     {

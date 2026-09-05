@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Import delle app Home-Manager (moduli)
@@ -9,7 +9,7 @@
     #../../modules/home/apps/vscodium.nix
 
   ];
-  
+
   # Identità + versione HM
   home.username = "emoriver";
   home.homeDirectory = "/home/emoriver";
@@ -17,7 +17,13 @@
 
   # Pacchetti utente (se vuoi aggiunte "sciolte")
   home.packages = with pkgs; [
-    bat eza fd ripgrep fzf jq yq-go
+    bat
+    eza
+    fd
+    ripgrep
+    fzf
+    jq
+    yq-go
     #spotify
     #dbeaver-bin
     #keepassxc
