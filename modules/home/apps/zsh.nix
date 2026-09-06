@@ -3,7 +3,7 @@
 {
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;  # o autosuggestion.enable = true su versioni più recenti
+    autosuggestion.enable = true;  # o autosuggestion.enable = true su versioni più recenti
     syntaxHighlighting.enable = true;
     history = {
       size = 10000;
