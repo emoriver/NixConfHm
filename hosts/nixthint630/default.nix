@@ -174,6 +174,7 @@
     gnupg
     tmux
     yazi
+    ghostty.terminfo
 
     ffmpeg # decoder audio aggiuntivi
     yt-dlp # resolver stream SoundCloud
