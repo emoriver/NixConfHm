@@ -177,6 +177,7 @@
     fd
     unzip
     zip
+    cifs-utils
     gnupg
     tmux
     yazi
