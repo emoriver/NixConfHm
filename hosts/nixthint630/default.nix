@@ -75,6 +75,10 @@
     #── WiFi (opzionale) ────────────────────────────────────────────────────
     wireless = {
       enable = true;
+      extraConfig = ''
+        ctrl_interface=/run/wpa_supplicant
+        ctrl_interface_group=wheel
+      '';
       networks = {
         "aegm1" = {
           psk = "password_1";
