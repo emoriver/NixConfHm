@@ -72,24 +72,7 @@
     # Ethernet — DHCP automatico
     interfaces.eth0.useDHCP = true;
 
-    #── WiFi (opzionale) ────────────────────────────────────────────────────
-    wireless = {
-      enable = true;
-      extraConfig = ''
-        ctrl_interface=/run/wpa_supplicant
-        ctrl_interface_group=wheel
-      '';
-      networks = {
-        "aegm1" = {
-          psk = "password_1";
-          priority = 10;
-        };
-        "aegm3" = {
-          psk = "password_2";
-          priority = 5;
-        };
-      };
-    };
+    networkmanager.enable = true;
 
     firewall = {
       enable = true;
@@ -130,10 +113,10 @@
   };
 
   # se il tc parte prima che sia pronto il wi-fi non si connette: in questo modo ritenta ogni 10s
-  systemd.services.wpa_supplicant = {
-    serviceConfig.Restart = "always";
-    serviceConfig.RestartSec = "10s";
-  };
+  #systemd.services.wpa_supplicant = {
+  #  serviceConfig.Restart = "always";
+  #  serviceConfig.RestartSec = "10s";
+  #};
 
   # ── Blocco del Risparmio Energetico (Sempre Acceso) ───────────────────────
   services.logind = {
@@ -185,7 +168,6 @@
     gnupg
     tmux
     yazi
-    ghostty.terminfo
 
     ffmpeg # decoder audio aggiuntivi
     yt-dlp # resolver stream SoundCloud
