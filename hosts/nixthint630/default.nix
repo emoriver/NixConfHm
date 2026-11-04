@@ -112,12 +112,6 @@
     };
   };
 
-  # se il tc parte prima che sia pronto il wi-fi non si connette: in questo modo ritenta ogni 10s
-  #systemd.services.wpa_supplicant = {
-  #  serviceConfig.Restart = "always";
-  #  serviceConfig.RestartSec = "10s";
-  #};
-
   # ── Blocco del Risparmio Energetico (Sempre Acceso) ───────────────────────
   services.logind = {
     settings = {
@@ -168,6 +162,7 @@
     gnupg
     tmux
     yazi
+    networkmanager
 
     ffmpeg # decoder audio aggiuntivi
     yt-dlp # resolver stream SoundCloud

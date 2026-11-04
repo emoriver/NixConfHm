@@ -28,6 +28,7 @@
 
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAR56Aa22c+Q+Uj+7V7skB6ZldUnfvbxy2dqZIAXbH4D emoriver@barronera"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ/23fWiczmReYRwPaKRwv5dhzZhQWqXgl89OOOxW7G8 emoriver@p16s1"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDo1+TiRNAS8cI3X4k+Uc4xyaLd8venUtlzzQFSFr55g emoriver@zenemo"
     ];
   };
 }
